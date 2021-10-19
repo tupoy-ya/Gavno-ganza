@@ -14,12 +14,13 @@
 #include <imgui.h>
 
 #include "gui/base_tab.h"
+#include "gui/LSCTab.h"
 
 namespace big
 {
 	void gui::dx_init()
 	{
-		auto &style = ImGui::GetStyle();
+		auto& style = ImGui::GetStyle();
 		style.WindowPadding = { 10.f, 10.f };
 		style.PopupRounding = 0.f;
 		style.FramePadding = { 8.f, 4.f };
@@ -44,10 +45,10 @@ namespace big
 		style.ButtonTextAlign = { 0.5f, 0.5f };
 		style.DisplaySafeAreaPadding = { 3.f, 3.f };
 
-		auto &colors = style.Colors;
+		auto& colors = style.Colors;
 		colors[ImGuiCol_Text] = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
 		colors[ImGuiCol_TextDisabled] = ImVec4(1.00f, 0.90f, 0.19f, 1.00f);
-		colors[ImGuiCol_WindowBg] = ImVec4(0.06f, 0.06f, 0.06f, 1.00f);
+		colors[ImGuiCol_WindowBg] = ImVec4(0.06f, 0.06f, 0.06f, 0.90f);
 		colors[ImGuiCol_ChildBg] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
 		colors[ImGuiCol_PopupBg] = ImVec4(0.08f, 0.08f, 0.08f, 0.94f);
 		colors[ImGuiCol_Border] = ImVec4(0.30f, 0.30f, 0.30f, 0.50f);
@@ -103,6 +104,9 @@ namespace big
 			{
 				ImGui::BeginTabBar("tabbar");
 				base_tab::render_base_tab();
+				base_tab::render_players_tab();
+				base_tab::render_outfit_tab();
+				lsc_tab::render_lsc_tab();
 				ImGui::EndTabBar();
 			}
 			ImGui::End();
@@ -120,7 +124,23 @@ namespace big
 		{
 			if (g_gui.m_opened)
 			{
-				PAD::DISABLE_ALL_CONTROL_ACTIONS(0);
+				//PAD::DISABLE_ALL_CONTROL_ACTIONS(0);
+				PAD::DISABLE_CONTROL_ACTION(2, 0, true);   //INPUT_NEXT_CAMERA
+				PAD::DISABLE_CONTROL_ACTION(2, 1, true);   //INPUT_LOOK_LR
+				PAD::DISABLE_CONTROL_ACTION(2, 2, true);   //INPUT_LOOK_UD
+				PAD::DISABLE_CONTROL_ACTION(2, 14, true);  //INPUT_WEAPON_WHEEL_NEXT
+				PAD::DISABLE_CONTROL_ACTION(2, 15, true);  //INPUT_WEAPON_WHEEL_PREV
+				PAD::DISABLE_CONTROL_ACTION(2, 16, true);  //INPUT_SELECT_NEXT_WEAPON
+				PAD::DISABLE_CONTROL_ACTION(2, 17, true);  //INPUT_SELECT_PREV_WEAPON
+				PAD::DISABLE_CONTROL_ACTION(2, 24, true);  //INPUT_ATTACK
+				PAD::DISABLE_CONTROL_ACTION(2, 25, true);  //INPUT_AIM
+				PAD::DISABLE_CONTROL_ACTION(2, 68, true);  //INPUT_VEH_AIM
+				PAD::DISABLE_CONTROL_ACTION(2, 69, true);  //INPUT_VEH_ATTACK
+				PAD::DISABLE_CONTROL_ACTION(2, 70, true);  //INPUT_VEH_ATTACK2
+				PAD::DISABLE_CONTROL_ACTION(2, 91, true);  //INPUT_VEH_PASSENGER_AIM
+				PAD::DISABLE_CONTROL_ACTION(2, 92, true);  //INPUT_VEH_PASSENGER_ATTACK
+				PAD::DISABLE_CONTROL_ACTION(2, 99, true);  //INPUT_VEH_SELECT_NEXT_WEAPON
+				PAD::DISABLE_CONTROL_ACTION(2, 100, true); //INPUT_VEH_SELECT_PREV_WEAPON
 			}
 		}
 		EXCEPT_CLAUSE

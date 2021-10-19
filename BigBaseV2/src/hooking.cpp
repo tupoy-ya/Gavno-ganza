@@ -11,9 +11,9 @@
 #include "pointers.hpp"
 #include "renderer.hpp"
 #include "script_mgr.hpp"
+#include "stdafx.h"
 
 #include <MinHook.h>
-
 namespace big
 {
 	static GtaThread *find_script_thread(rage::joaat_t hash)
