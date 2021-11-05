@@ -10,4 +10,5 @@ namespace big::functions
 	using fix_vectors_t = void(*)(rage::scrNativeCallContext*);
 	using register_file_t = uint32_t*(*)(int*, const char*, bool, const char*, bool);
 	using get_script_handle_t = int64_t(*)(int64_t);
+	using get_net_player = CNetGamePlayer * (std::int8_t PlayerIndex);
 }

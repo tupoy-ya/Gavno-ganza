@@ -27,7 +27,7 @@ workspace "BigBaseV2"
     filter "system:windows"
     staticruntime "Off"
 	floatingpoint "Fast"
-	vectorextensions "AVX2"
+	vectorextensions "SSE2"
     systemversion (WindowsSdkVersion)
     toolset (MsvcToolset)
     cppdialect (CppVersion)
